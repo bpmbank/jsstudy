@@ -2,10 +2,12 @@
 
 ![javascript](javascript.png)
 
-函數是一等公民：　　
+函數是一等公民：  
+
+Function.protype==Function.＿＿proto＿＿
 
 原型链：创世界
-
+![](prototype.png)
 
 MVX(C/T/VM)的必要性：　
 
