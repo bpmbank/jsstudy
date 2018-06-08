@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <title>Document</title>
+    <style type="text/css">
+        #show{
+            width:150px;
+            height:150px;
+            background-color: red;
+            position:absolute;
+
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <button id="ajax">ajax</button>
+    <button id="test">test</button>
+    <button id="test1">test1</button>
+    <div id="show">
+
+    </div>
+    <li>1213</li>
+    <li>12312</li>
+    <li>12313</li>
+</ul>
+<div>
+    <li>131</li>
+    <li>13123</li>
+    <li>1313</li>
+</div>
+<script>
+    $(function(){
+        $("#test1").on("click",(event)=>{
+            $("#show").fadeToggle(2000);
+        });
+    })
+    $(function(){
+    $("#ajax").on("click",(evnet)=> {
+        for(var i=0;i<100000;i++){
+        $.ajax({
+            type: "GET",
+            url: "http://60.205.223.43:7005/books",
+            data: {}
+        }).done((msg) => {
+            console.log(msg);
+        });}
+
+    })
+
+    });
+</script>
+</body>
+</html>
