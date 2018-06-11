@@ -43,9 +43,11 @@ PATCH：局部更新
 DELETE:删除  
 OPTION:
 
-
-
-
+#### nodejs 模块
+fs    
+stream   
+net   
+   
 
 
 
