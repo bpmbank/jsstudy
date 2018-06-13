@@ -72,6 +72,59 @@ Boolean、Object
 更新  
 删除  
 
-#### Mongoose
+#### Mongoose  
 角色：连接 管理  
 schema：
+
+#### 前端
+JSX webcomponent  
+React/Vue/Angular  
+
+### 包管理  
+npm install --save-dev webpack webpack-cli   
+cnpm install --save-dev file-loader   
+cnpm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react  
+cnpm install --save react react-dom  
+
+一键生成react项目  
+npm install -g create-react-app
+
+#### React
+声明式编程  --单向数据流  
+命令式变成  --双向数据流  
+
+
+
+##ES基础
+day1  
+语法  
+函数式编程：  
+  函数作为参数  
+  this的变化  
+OP编程：  
+  对象创建--动态原型  
+  继承--寄生构造（伪经典继承）、  
+
+day2  
+jQuery  
+链式操作  
+ajax操作  
+
+day3
+nodejs  
+异步式编程  
+事件编程--emitter  
+express  
+
+day5  
+mongodb  
+mongoose   
+dao分离 
+
+day6  
+webpack  
+在js中绑定model和view的关系，吧js挂在在dom上，
+setState自动变化
+  
+
+  
