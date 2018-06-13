@@ -44,14 +44,34 @@ DELETE:删除
 OPTION:
 
 #### nodejs 模块
-fs
-递归删除文件    
+fs：递归删除一个文件夹？    
 stream   
 net   
 
-#### webpack
-   
+#### mongodb
+Document:最基本单元，是k-v对的有序集合  
+Collection:是Document的集合  
+DB：是Collection的集合  
+_id,每个文档都会有一个特殊的键，type:ObjectId 
+[BSON](http://bsonspec.org)  
+[可视化工具robomongo](https://robomongo.org/download)    
 
+#### 数据类型
+Boolean、Object  
+ 
 
+#### 数据操作
+查询  
+    分页：skip +limit  
+    投影：find({查询条件},{投影参数})   
+    条件查询：正则式  
+    nul&exist：$and操作符  
+    数组查询:包含查询$all        
+    对象数组查询：$elemMatch
+    
+更新  
+删除  
 
-
+#### Mongoose
+角色：连接 管理  
+schema：
