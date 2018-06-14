@@ -87,7 +87,10 @@ cnpm install --save-dev babel-core babel-loader babel-preset-env babel-preset-re
 cnpm install --save react react-dom  
 
 一键生成react项目  
-npm install -g create-react-app
+npm install -g create-react-app  
+
+#### 在线调试热更新  
+webpack-dev-server --open
 
 #### React
 声明式编程  --单向数据流  
@@ -103,7 +106,7 @@ day1
   this的变化  
 OP编程：  
   对象创建--动态原型  
-  继承--寄生构造（伪经典继承）、  
+  继承--寄生构造（伪经典继承）
 
 day2  
 jQuery  
@@ -125,6 +128,9 @@ day6
 webpack  
 在js中绑定model和view的关系，吧js挂在在dom上，
 setState自动变化
-  
+
+
+#### Babel
+解决浏览器兼容性问题
 
   

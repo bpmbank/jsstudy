@@ -1,52 +1,98 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AddBookForm from './books/add-book.js'
+import UpdateBookForm from './books/update-book';
+
 import $ from 'jquery';
 
-let a = "john"
-let user = {uname: "tom", age: 23}
-
-class Clock extends React.Component{
-
+class App extends React.Component{
     constructor(props){
-       super(props);
-       this.state= {dv:new Date()}  //状态代表未来渲染到页面的数据
-   }
-   componentDidMount(){
-        this.fd=setInterval(()=>{
-            //this.state.div=...错误
-            this.setState({dv:new Date()})
-        },1000)
-   }
-   componentWillUnmount(){
-        clearInterval(fd);
-   }
-    render(){ //展示内容
-        let format=this.props.format;
-        let rs = this.state.dv.toLocaleString();
-        if (format=="ISO"){
-            rs=this.state.dv.toISOString();
-        }
-       return (<div>
-           <h3>{rs}</h3>
-           <button onClick={()=>{
-               clearInterval(this.fd)
-           }}>stop</button>
-       </div>)
-
-   }
-}
-class App extends React.Component {
-    render() {
-        return (<div><Clock format={this.props.format}></Clock></div>);
-        // return (<h1>Hello world {this.props.user.uname},{this.props.user.age}!!!!</h1>)
+        super(props);
+        this.state={books:[]};
+        this.addBook=this.addBook.bind(this);
+        this.updateBook=this.updateBook.bind(this);
     }
-}
+    render(){
+        return (<div id="wraper">
+            <AddBookForm callback={this.addBook}/>
+            <div id="bookList">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>bookID</th>
+                        <th>bookName</th>
+                        <th>Price</th>
+                        <th>operate</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.state.books.map((book)=>{
+                        return (<tr key={book._id} onDoubleClick={()=>{this.dbclickHandle(book)}}>
+                            <td>{book.id}</td>
+                            <td>{book.bname}</td>
+                            <td>{book.price}</td>
+                            <td>
+                                <button onClick={()=>{this.deletBook(book)}}>删除</button>
+                            </td>
+                        </tr>)
+                    })}
+                    </tbody>
+                </table>
+            </div>
 
-window.onload = function () {
-    ReactDOM.render((<div>
-        {/*<App user={user}/>*/}
-        {/*<App user={{uname:"john",age:100}} format={"ISO"}/>*/}
-        <App format="other"/>
-        <App format="ISO"/>
-    </div>), document.getElementById("root"));
+            <UpdateBookForm callback={this.updateBook} ref={(me)=>{this.upform=me}}/>
+
+        </div>);
+    }
+
+    componentDidMount(){
+        $.ajax({url:this.props.url,method:"GET"})
+            .done((bks)=>{
+                this.setState({books:bks});
+            })
+    }
+
+    addBook(bk){
+        let opt={url:this.props.url,method:"POST"};
+        opt.contentType="application/json";
+        opt.data=JSON.stringify(bk);
+
+        $.ajax(opt)
+            .done((book)=>{
+                this.state.books.push(book[0]);
+                this.setState({books:this.state.books});
+            })
+    }
+
+    deletBook(book){
+        $.ajax({url:this.props.url+book._id,method:"DELETE"})
+            .done((o)=>{
+                let index=this.state.books.indexOf(book);
+                this.state.books.splice(index,1);
+                this.setState({books:this.state.books});
+            })
+    }
+
+
+    dbclickHandle(book){
+        this.currentBook=book;
+        // this.setState({bname:book.bname,price:book.price});
+        this.upform.setState({bname:this.currentBook.bname,price:this.currentBook.price});
+    }
+    updateBook(bk){
+
+        let opt={url:this.props.url+this.currentBook._id,method:"PUT"};
+        opt.contentType="application/json";
+        // opt.data=JSON.stringify({_id:this.currentBook._id,bname:this.state.bname,price:this.state.price});
+        bk._id=this.currentBook._id;
+        opt.data=JSON.stringify(bk);
+        $.ajax(opt)
+            .done((book)=>{
+                let index=this.state.books.indexOf(this.currentBook);
+                this.state.books.splice(index,1,book);
+                this.setState({books:this.state.books});
+            })
+    }
+
 }
+ReactDOM.render(<App url="http://localhost:9000/books/"/>,document.getElementById("root"));

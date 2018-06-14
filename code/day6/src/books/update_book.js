@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom'
-import $ from 'jquery'
+import React from 'react'
+
+
 //负责收集数据
 export default  class updateBookForm extends React.Component{
     constructor(props){

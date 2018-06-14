@@ -10,7 +10,7 @@ window.onload=function(){
     ico.src=bai;
     document.body.appendChild(ico)
 }
-alert("Hello world....+"m+"..."+m1);
+// alert("Hello world....+"m+"..."+m1);
 // let ico = new Image()
 // ico.src=gico
 // document.body.appendChild(ico);
